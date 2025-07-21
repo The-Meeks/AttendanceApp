@@ -8,17 +8,17 @@
     android:background="#f5f5f5"
     android:gravity="center">
 
-    <!-- App Logo/Title -->
+    <!-- Title -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Login"
+        android:text="Student Login"
         android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="#2C3E50"
         android:layout_marginBottom="32dp" />
 
-    <!-- Login Card Container -->
+    <!-- Login Card -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,12 +27,13 @@
         android:padding="24dp"
         android:elevation="4dp">
 
-        <!-- Email Input -->
+        <!-- Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:hint="Email Address">
+            android:hint="Email Address"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextEmail"
@@ -41,17 +42,15 @@
                 android:inputType="textEmailAddress"
                 android:drawableStart="@drawable/ic_attendance"
                 android:drawablePadding="12dp" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Password Input -->
+        <!-- Password -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
             android:hint="Password"
-            app:passwordToggleEnabled="true"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            app:passwordToggleEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editTextPassword"
@@ -60,7 +59,6 @@
                 android:inputType="textPassword"
                 android:drawableStart="@drawable/ic_attendance"
                 android:drawablePadding="12dp" />
-
         </com.google.android.material.textfield.TextInputLayout>
 
         <!-- Login Button -->
@@ -74,16 +72,6 @@
             android:textColor="#FFFFFF"
             android:background="@drawable/ic_launcher_background"
             android:elevation="2dp" />
-
     </LinearLayout>
-
-    <!-- Footer Text -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DeKUT Attendance System"
-        android:textSize="14sp"
-        android:textColor="#7F8C8D"
-        android:layout_marginTop="24dp" />
 
 </LinearLayout>
