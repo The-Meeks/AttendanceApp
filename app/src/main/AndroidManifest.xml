@@ -23,19 +23,24 @@
             </intent-filter>
         </activity>
 
-        <!-- Admin Login -->
+        <!-- Admin Login & Dashboard -->
         <activity android:name=".AdminLoginActivity" android:exported="true" />
+        <activity android:name=".AdminDashboardActivity" android:exported="true" />
 
-        <!-- Admin Dashboard
-        <activity android:name=".AdminDashboardActivity" android:exported="false" /> -->
+        <!-- Register Activities -->
+        <activity android:name=".RegisterStudentsActivity" android:exported="true" />
+        <activity android:name=".RegisterLecturersActivity" android:exported="true" />
+        <activity android:name=".RegisterUnitsActivity" android:exported="true" />
 
-        <!-- Student Login -->
+        <!-- Remove User Activity -->
+        <activity android:name=".RemoveUserActivity" android:exported="true" />
+
+        <!-- View Attendance -->
+        <activity android:name=".ViewAttendanceActivity" android:exported="true" />
+
+        <!-- Student & Lecturer Login -->
         <activity android:name=".StudentLoginActivity" android:exported="true" />
-
-        <!-- Lecturer Login -->
         <activity android:name=".LecturerLoginActivity" android:exported="true" />
-
-        <!-- Add other activities here as needed -->
 
     </application>
 </manifest>

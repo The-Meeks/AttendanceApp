@@ -1,5 +1,6 @@
 package com.example.attendanceapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -27,13 +28,10 @@ public class AdminLoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_login);
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Initialize UI components
         initializeViews();
 
-        // Set click listener for login button
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +50,6 @@ public class AdminLoginActivity extends AppCompatActivity {
         String email = editTextEmail.getText().toString().trim();
         String password = editTextPassword.getText().toString().trim();
 
-        // Validate input fields
         if (TextUtils.isEmpty(email)) {
             editTextEmail.setError("Email is required");
             editTextEmail.requestFocus();
@@ -71,42 +68,34 @@ public class AdminLoginActivity extends AppCompatActivity {
             return;
         }
 
-        // Disable login button during authentication
         buttonLogin.setEnabled(false);
         buttonLogin.setText("Logging in...");
 
-        // Perform Firebase Authentication
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        // Re-enable login button
                         buttonLogin.setEnabled(true);
                         buttonLogin.setText("LOGIN");
 
                         if (task.isSuccessful()) {
-                            // Sign in success
                             FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null) {
-                                // Check if the logged-in user is the admin
-                                String userEmail = user.getEmail();
-                                if ("admin@dekut.ac.ke".equals(userEmail)) {
-                                    Toast.makeText(AdminLoginActivity.this,
-                                            "Login successful", Toast.LENGTH_SHORT).show();
+                            if (user != null && "admin@dekut.ac.ke".equals(user.getEmail())) {
+                                Toast.makeText(AdminLoginActivity.this,
+                                        "Login successful", Toast.LENGTH_SHORT).show();
 
-                                    // Clear input fields after successful login
-                                    editTextEmail.setText("");
-                                    editTextPassword.setText("");
-                                } else {
-                                    // Sign out if not admin and show error
-                                    mAuth.signOut();
-                                    Toast.makeText(AdminLoginActivity.this,
-                                            "Access denied: Admin credentials required",
-                                            Toast.LENGTH_LONG).show();
-                                }
+                                // Redirect to Admin Dashboard
+                                Intent intent = new Intent(AdminLoginActivity.this, AdminDashboardActivity.class);
+                                startActivity(intent);
+                                finish(); // prevent going back to login
+
+                            } else {
+                                mAuth.signOut();
+                                Toast.makeText(AdminLoginActivity.this,
+                                        "Access denied: Admin credentials required",
+                                        Toast.LENGTH_LONG).show();
                             }
                         } else {
-                            // Sign in failed
                             String errorMessage = "Authentication failed";
                             if (task.getException() != null) {
                                 errorMessage = task.getException().getMessage();
@@ -121,10 +110,11 @@ public class AdminLoginActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        // Check if user is already signed in
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null && "admin@dekut.ac.ke".equals(currentUser.getEmail())) {
-            Toast.makeText(this, "Already logged in as admin", Toast.LENGTH_SHORT).show();
+            // Auto-login if already signed in
+            startActivity(new Intent(this, AdminDashboardActivity.class));
+            finish();
         }
     }
 }

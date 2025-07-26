@@ -76,14 +76,4 @@
             android:elevation="2dp" />
 
     </LinearLayout>
-
-    <!-- Footer Text -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DeKUT Attendance System"
-        android:textSize="14sp"
-        android:textColor="#7F8C8D"
-        android:layout_marginTop="24dp" />
-
 </LinearLayout>

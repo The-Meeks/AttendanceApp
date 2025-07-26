@@ -1,0 +1,74 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#f5f5f5">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Lecturer"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp" />
+
+        <EditText
+            android:id="@+id/etLecturerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Full Name"
+            android:minHeight="48dp" />
+
+        <EditText
+            android:id="@+id/etLecturerPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Phone Number"
+            android:inputType="phone"
+            android:minHeight="48dp"/>
+
+        <EditText
+            android:id="@+id/etLecturerPFNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="PF Number"
+            android:minHeight="48dp"/>
+
+        <Spinner
+            android:id="@+id/spinnerLecturerDept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:prompt="@string/prompt_select_department"
+            android:minHeight="48dp"/>
+
+        <EditText
+            android:id="@+id/etLecturerEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email Address"
+            android:inputType="textEmailAddress"
+            android:minHeight="48dp"/>
+
+        <EditText
+            android:id="@+id/etLecturerPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:minHeight="48dp"/>
+
+        <Button
+            android:id="@+id/btnRegisterLecturer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register Lecturer"
+            android:layout_marginTop="24dp" />
+    </LinearLayout>
+</ScrollView>
