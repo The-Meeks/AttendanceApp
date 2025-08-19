@@ -1,46 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
-    android:orientation="vertical"
-    android:background="#f5f5f5">
+    android:background="#f5f5f5"
+    android:padding="24dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register Unit"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="24dp" />
-
-    <EditText
-        android:id="@+id/etUnitCode"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Unit Code"
-        android:minHeight="48dp"/>
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etUnitName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Unit Name"
-        android:minHeight="48dp"/>
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Register Unit"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#2C3E50"
+            android:layout_gravity="center"
+            android:layout_marginBottom="24dp" />
 
-    <Spinner
-        android:id="@+id/spinnerUnitDept"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:prompt="@string/prompt_select_department"
-        android:layout_marginTop="12dp"
-        android:minHeight="48dp"/>
+        <!-- Unit Code -->
+        <EditText
+            android:id="@+id/etUnitCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unit Code (e.g., CSC101)"
+            android:inputType="textCapCharacters"
+            android:minHeight="48dp" />
 
-    <Button
-        android:id="@+id/btnRegisterUnit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Register Unit"
-        android:layout_marginTop="24dp" />
-</LinearLayout>
+        <!-- Unit Name -->
+        <EditText
+            android:id="@+id/etUnitName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Unit Name (e.g., Introduction to Programming)"
+            android:inputType="textCapWords"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp" />
+
+        <!-- Department Spinner -->
+        <Spinner
+            android:id="@+id/spinnerUnitDept"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp" />
+
+        <!-- Year of Study Spinner -->
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp" />
+
+        <!-- Semester Spinner -->
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:minHeight="48dp" />
+
+        <!-- Register Button -->
+        <Button
+            android:id="@+id/btnRegisterUnit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register Unit"
+            android:backgroundTint="#2980b9"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="24dp" />
+
+    </LinearLayout>
+</ScrollView>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,61 +7,113 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:gravity="center_horizontal">
+        android:padding="20dp">
 
         <TextView
-            android:id="@+id/tvWelcome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Welcome, Admin"
-            android:textSize="24sp"
+            android:text="Admin Dashboard"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#2C3E50"
-            android:layout_marginBottom="32dp" />
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"/>
 
-        <Button
-            android:id="@+id/btnRegisterStudents"
+        <!-- First Row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Students"
-            android:layout_marginBottom="16dp" />
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnRegisterLecturers"
+            <Button
+                android:id="@+id/btnRegisterStudents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Register Students"/>
+
+            <Button
+                android:id="@+id/btnRegisterLecturers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Register Lecturers"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Second Row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Lecturers"
-            android:layout_marginBottom="16dp" />
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnRegisterUnits"
+            <Button
+                android:id="@+id/btnRegisterUnits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Units"/>
+
+            <Button
+                android:id="@+id/btnAllocateUnits"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Allocate Units"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Third Row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Units"
-            android:layout_marginBottom="16dp" />
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnViewAttendance"
+            <Button
+                android:id="@+id/btnEnrollStudents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Enroll Students"/>
+
+            <Button
+                android:id="@+id/btnRemoveUsers"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Remove Users"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- Fourth Row -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="View Attendance"
-            android:layout_marginBottom="16dp" />
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:layout_marginBottom="12dp">
 
-        <Button
-            android:id="@+id/btnRemoveUsers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Remove Users"
-            android:layout_marginBottom="24dp" />
+            <Button
+                android:id="@+id/btnPromotion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Promotion"/>
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Logout"
+                android:layout_marginStart="8dp"/>
 
-        <Button
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Logout"
-            android:backgroundTint="#e74c3c"
-            android:textColor="#FFFFFF" />
+        </LinearLayout>
 
     </LinearLayout>
 </ScrollView>

@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -51,16 +50,11 @@ public class RegisterLecturersActivity extends AppCompatActivity {
         spinnerLecturerDept.setAdapter(adapter);
 
         // Button Click Listener
-        btnRegisterLecturer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerLecturer();
-            }
-        });
+        btnRegisterLecturer.setOnClickListener(v -> registerLecturer());
     }
 
     private void registerLecturer() {
-        String name = etLecturerName.getText().toString().trim();
+        String fullName = etLecturerName.getText().toString().trim();
         String phone = etLecturerPhone.getText().toString().trim();
         String pfNumber = etLecturerPFNumber.getText().toString().trim();
         String email = etLecturerEmail.getText().toString().trim();
@@ -68,7 +62,7 @@ public class RegisterLecturersActivity extends AppCompatActivity {
         String department = spinnerLecturerDept.getSelectedItem().toString();
 
         // Basic validation
-        if (name.isEmpty() || phone.isEmpty() || pfNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
+        if (fullName.isEmpty() || phone.isEmpty() || pfNumber.isEmpty() || email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
             return;
         }
@@ -82,8 +76,8 @@ public class RegisterLecturersActivity extends AppCompatActivity {
                             // Save lecturer info to Firestore
                             Map<String, Object> lecturerData = new HashMap<>();
                             lecturerData.put("uid", user.getUid());
-                            lecturerData.put("name", name);
-                            lecturerData.put("phone", phone);
+                            lecturerData.put("full_name", fullName);
+                            lecturerData.put("phone_number", phone);
                             lecturerData.put("pf_number", pfNumber);
                             lecturerData.put("email", email);
                             lecturerData.put("department", department);

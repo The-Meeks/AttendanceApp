@@ -35,12 +35,14 @@
         <!-- Remove User Activity -->
         <activity android:name=".RemoveUserActivity" android:exported="true" />
 
-        <!-- View Attendance -->
-        <activity android:name=".ViewAttendanceActivity" android:exported="true" />
 
         <!-- Student & Lecturer Login -->
         <activity android:name=".StudentLoginActivity" android:exported="true" />
         <activity android:name=".LecturerLoginActivity" android:exported="true" />
+        <activity android:name=".AllocateUnitsActivity" android:exported="true"/>
+        <activity android:name=".EnrollCourseActivity" android:exported="true"/>
+        <activity android:name=".PromoteCourseActivity" android:exported="true"/>
+
 
     </application>
 </manifest>

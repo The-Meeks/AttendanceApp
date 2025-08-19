@@ -2,40 +2,60 @@ package com.example.attendanceapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
-    private TextView tvWelcome;
-    private Button btnRegisterStudents, btnRegisterLecturers, btnRegisterUnits, btnViewAttendance, btnRemoveUsers, btnLogout;
+    private Button btnRegisterStudents, btnRegisterLecturers, btnRegisterUnits,
+            btnAllocateUnits, btnEnrollStudents, btnStatistics,
+            btnPromotion, btnRemoveUsers, btnLogout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_dashboard);
 
-        tvWelcome = findViewById(R.id.tvWelcome);
+        // Initialize buttons
         btnRegisterStudents = findViewById(R.id.btnRegisterStudents);
         btnRegisterLecturers = findViewById(R.id.btnRegisterLecturers);
         btnRegisterUnits = findViewById(R.id.btnRegisterUnits);
-        btnViewAttendance = findViewById(R.id.btnViewAttendance);
+        btnAllocateUnits = findViewById(R.id.btnAllocateUnits);
+        btnEnrollStudents = findViewById(R.id.btnEnrollStudents);
+
+        btnPromotion = findViewById(R.id.btnPromotion);
         btnRemoveUsers = findViewById(R.id.btnRemoveUsers);
         btnLogout = findViewById(R.id.btnLogout);
 
-        tvWelcome.setText("Welcome, Admin");
+        // Set click listeners
+        btnRegisterStudents.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterStudentsActivity.class)));
 
-        btnRegisterStudents.setOnClickListener(v -> startActivity(new Intent(this, RegisterStudentsActivity.class)));
-        btnRegisterLecturers.setOnClickListener(v -> startActivity(new Intent(this, RegisterLecturersActivity.class)));
-        btnRegisterUnits.setOnClickListener(v -> startActivity(new Intent(this, RegisterUnitsActivity.class)));
-        btnViewAttendance.setOnClickListener(v -> startActivity(new Intent(this, ViewAttendanceActivity.class)));
-        btnRemoveUsers.setOnClickListener(v -> startActivity(new Intent(this, RemoveUserActivity.class)));
+        btnRegisterLecturers.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterLecturersActivity.class)));
+
+        btnRegisterUnits.setOnClickListener(v ->
+                startActivity(new Intent(this, RegisterUnitsActivity.class)));
+
+        btnAllocateUnits.setOnClickListener(v ->
+                startActivity(new Intent(this, AllocateUnitsActivity.class)));
+
+        btnEnrollStudents.setOnClickListener(v ->
+                startActivity(new Intent(this, EnrollCourseActivity.class)));
+
+
+
+        btnPromotion.setOnClickListener(v ->
+                startActivity(new Intent(this, PromoteCourseActivity.class)));
+
+        btnRemoveUsers.setOnClickListener(v ->
+                startActivity(new Intent(this, RemoveUserActivity.class)));
 
         btnLogout.setOnClickListener(v -> {
+            // Go back to login screen
             startActivity(new Intent(this, AdminLoginActivity.class));
-            finish();
+            finish(); // close dashboard so user can’t return with back button
         });
     }
 }

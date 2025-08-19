@@ -2,81 +2,113 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
     android:background="#f5f5f5">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:padding="24dp">
 
         <TextView
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Register Student"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_gravity="center"
+            android:textColor="#2C3E50"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
+        <!-- Full Name -->
         <EditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
+            android:inputType="textPersonName"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
+        <!-- Registration Number -->
         <EditText
             android:id="@+id/etRegNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Registration Number"
+            android:inputType="text"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
+        <!-- Phone Number -->
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone Number"
             android:inputType="phone"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
+        <!-- Email -->
         <EditText
             android:id="@+id/etStudentEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
+            android:hint="Email"
             android:inputType="textEmailAddress"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
+        <!-- Password -->
         <EditText
             android:id="@+id/etStudentPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
+            android:layout_marginBottom="16dp"
             android:minHeight="48dp"/>
 
+        <!-- Department Spinner -->
         <Spinner
             android:id="@+id/spinnerStudentDept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:prompt="@string/prompt_select_department"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <EditText
-            android:id="@+id/etCourse"
+        <!-- Course Spinner -->
+        <Spinner
+            android:id="@+id/spinnerStudentCourse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Course"
+            android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
+        <!-- Year of Study Spinner -->
+        <Spinner
+            android:id="@+id/spinnerYear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:minHeight="48dp"/>
+        <Spinner
+            android:id="@+id/spinnerSemester"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:minHeight="48dp"/>
+
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegisterStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Register Student"
-            android:layout_marginTop="24dp" />
+            android:backgroundTint="#27ae60"
+            android:textColor="#ffffff" />
+
     </LinearLayout>
 </ScrollView>
