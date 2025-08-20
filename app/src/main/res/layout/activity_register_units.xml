@@ -10,7 +10,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,7 +20,6 @@
             android:layout_gravity="center"
             android:layout_marginBottom="24dp" />
 
-        <!-- Unit Code -->
         <EditText
             android:id="@+id/etUnitCode"
             android:layout_width="match_parent"
@@ -30,7 +28,6 @@
             android:inputType="textCapCharacters"
             android:minHeight="48dp" />
 
-        <!-- Unit Name -->
         <EditText
             android:id="@+id/etUnitName"
             android:layout_width="match_parent"
@@ -40,7 +37,6 @@
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
 
-        <!-- Department Spinner -->
         <Spinner
             android:id="@+id/spinnerUnitDept"
             android:layout_width="match_parent"
@@ -48,7 +44,6 @@
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
 
-        <!-- Year of Study Spinner -->
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="match_parent"
@@ -56,7 +51,6 @@
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
 
-        <!-- Semester Spinner -->
         <Spinner
             android:id="@+id/spinnerSemester"
             android:layout_width="match_parent"
@@ -64,7 +58,6 @@
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
 
-        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegisterUnit"
             android:layout_width="match_parent"

@@ -21,17 +21,15 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
-        <!-- Full Name -->
         <EditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Full Name"
-            android:inputType="textPersonName"
+            android:inputType="textCapWords"
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Registration Number -->
         <EditText
             android:id="@+id/etRegNumber"
             android:layout_width="match_parent"
@@ -41,7 +39,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Phone Number -->
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
@@ -51,7 +48,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Email -->
         <EditText
             android:id="@+id/etStudentEmail"
             android:layout_width="match_parent"
@@ -61,7 +57,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Password -->
         <EditText
             android:id="@+id/etStudentPassword"
             android:layout_width="match_parent"
@@ -71,7 +66,6 @@
             android:layout_marginBottom="16dp"
             android:minHeight="48dp"/>
 
-        <!-- Department Spinner -->
         <Spinner
             android:id="@+id/spinnerStudentDept"
             android:layout_width="match_parent"
@@ -79,7 +73,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Course Spinner -->
         <Spinner
             android:id="@+id/spinnerStudentCourse"
             android:layout_width="match_parent"
@@ -87,7 +80,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Year of Study Spinner -->
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="match_parent"
@@ -101,7 +93,6 @@
             android:layout_marginBottom="12dp"
             android:minHeight="48dp"/>
 
-        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegisterStudent"
             android:layout_width="match_parent"

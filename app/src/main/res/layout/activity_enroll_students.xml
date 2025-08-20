@@ -24,31 +24,36 @@
             android:id="@+id/spinnerDept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_department" />
+            android:prompt="@string/select_department"
+            android:minHeight="48dp"/>
 
         <Spinner
             android:id="@+id/spinnerCourse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_course" />
+            android:prompt="@string/select_course"
+            android:minHeight="48dp"/>
 
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_year" />
+            android:prompt="@string/select_year"
+            android:minHeight="48dp"/>
 
         <Spinner
             android:id="@+id/spinnerSemester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_semester" />
+            android:prompt="@string/select_semester"
+            android:minHeight="48dp"/>
 
         <Spinner
             android:id="@+id/spinnerUnit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:prompt="@string/select_unit" />
+            android:prompt="@string/select_unit"
+            android:minHeight="48dp"/>
 
         <Button
             android:id="@+id/btnEnrollCourse"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class AdminDashboardActivity extends AppCompatActivity {
 
@@ -53,9 +54,15 @@ public class AdminDashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(this, RemoveUserActivity.class)));
 
         btnLogout.setOnClickListener(v -> {
-            // Go back to login screen
-            startActivity(new Intent(this, AdminLoginActivity.class));
-            finish(); // close dashboard so user can’t return with back button
+
+            FirebaseAuth.getInstance().signOut();
+
+            // Redirect back to login
+            Intent intent = new Intent(this, AdminLoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
         });
+
     }
 }
