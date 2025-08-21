@@ -46,4 +46,9 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore:24.10.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation ("com.google.zxing:core:3.5.1")
+    implementation ("com.google.android.gms:play-services-location:21.3.0")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+
 }

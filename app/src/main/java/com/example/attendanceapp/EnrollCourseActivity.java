@@ -5,18 +5,13 @@ import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.firestore.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class EnrollCourseActivity extends AppCompatActivity {
 
     private Spinner spinnerDept, spinnerCourse, spinnerYear, spinnerSemester, spinnerUnit;
     private Button btnEnroll;
-
     private FirebaseFirestore db;
-    private List<String> unitCodes = new ArrayList<>();
-    private List<String> unitNames = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,31 +27,27 @@ public class EnrollCourseActivity extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        // Load static spinners
         SpinnerUtils.setupDepartmentSpinner(this, spinnerDept);
         spinnerDept.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, android.view.View view, int position, long id) {
-                SpinnerUtils.setupCourseSpinner(EnrollCourseActivity.this, spinnerCourse, spinnerDept.getSelectedItem().toString());
+                SpinnerUtils.setupCourseSpinner(EnrollCourseActivity.this, spinnerCourse,
+                        spinnerDept.getSelectedItem().toString());
             }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            @Override public void onNothingSelected(AdapterView<?> parent) {}
         });
 
         ArrayAdapter<String> yearAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                new String[]{"Select Year", "1", "2", "3", "4"});
+                android.R.layout.simple_spinner_item, new String[]{"Select Year", "1", "2", "3", "4"});
         yearAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerYear.setAdapter(yearAdapter);
 
         ArrayAdapter<String> semesterAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item,
-                new String[]{"Select Semester", "1", "2"});
+                android.R.layout.simple_spinner_item, new String[]{"Select Semester", "1", "2"});
         semesterAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSemester.setAdapter(semesterAdapter);
 
-        loadUnits(); // 🔹 load unit names + codes from DB
+        loadUnits();
 
         btnEnroll.setOnClickListener(v -> enrollCourse());
     }
@@ -64,22 +55,19 @@ public class EnrollCourseActivity extends AppCompatActivity {
     private void loadUnits() {
         db.collection("units").get()
                 .addOnSuccessListener(query -> {
-                    unitCodes.clear();
-                    unitNames.clear();
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                            android.R.layout.simple_spinner_item);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     for (DocumentSnapshot doc : query) {
                         String code = doc.getString("unit_code");
                         String name = doc.getString("unit_name");
-                        unitCodes.add(code);
-                        unitNames.add(code + " - " + name);
+                        adapter.add(code + " - " + name);
                     }
-
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                            android.R.layout.simple_spinner_item, unitNames);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                     spinnerUnit.setAdapter(adapter);
                 })
-                .addOnFailureListener(e -> Toast.makeText(this, "Failed to load units", Toast.LENGTH_SHORT).show());
+                .addOnFailureListener(e -> Toast.makeText(this,
+                        "Failed to load units", Toast.LENGTH_SHORT).show());
     }
 
     private void enrollCourse() {
@@ -88,24 +76,19 @@ public class EnrollCourseActivity extends AppCompatActivity {
         String year = spinnerYear.getSelectedItem().toString();
         String semester = spinnerSemester.getSelectedItem().toString();
 
-        int unitIndex = spinnerUnit.getSelectedItemPosition();
-        if (unitIndex < 0 || unitIndex >= unitCodes.size()) {
-            Toast.makeText(this, "Please select a unit", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String unitCode = unitCodes.get(unitIndex);
-        String unitName = unitNames.get(unitIndex);
-
         if (year.equals("Select Year") || semester.equals("Select Semester")) {
             Toast.makeText(this, "Please select year and semester", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        String unitText = spinnerUnit.getSelectedItem().toString();
+        String[] unitSplit = unitText.split(" - ");
+        String unitCode = unitSplit[0];
+        String unitName = unitSplit[1];
+
         int yearOfStudy = Integer.parseInt(year);
         int semesterNum = Integer.parseInt(semester);
 
-        // 🔹 find all students in that course + year + semester
         db.collection("students")
                 .whereEqualTo("department", department)
                 .whereEqualTo("course", course)
@@ -114,25 +97,39 @@ public class EnrollCourseActivity extends AppCompatActivity {
                 .get()
                 .addOnSuccessListener(query -> {
                     if (query.isEmpty()) {
-                        Toast.makeText(this, "No students found for this course/year/semester", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,
+                                "No students found for this course/year/semester",
+                                Toast.LENGTH_SHORT).show();
                         return;
                     }
 
                     for (DocumentSnapshot doc : query) {
-                        String regNumber = doc.getString("reg_number");
+                        String uid = doc.getString("uid");
+                        if (uid != null) {
+                            db.collection("studentUnits")
+                                    .whereEqualTo("student_id", uid)
+                                    .whereEqualTo("unit_code", unitCode)
+                                    .get()
+                                    .addOnSuccessListener(existing -> {
+                                        if (existing.isEmpty()) {
+                                            HashMap<String, Object> enrollment = new HashMap<>();
+                                            enrollment.put("student_id", uid);
+                                            enrollment.put("unit_code", unitCode);
+                                            enrollment.put("unit_name", unitName);
+                                            enrollment.put("department", department);
+                                            enrollment.put("course", course);
+                                            enrollment.put("year_of_study", yearOfStudy);
+                                            enrollment.put("semester", semesterNum);
 
-                        HashMap<String, Object> enrollment = new HashMap<>();
-                        enrollment.put("reg_number", regNumber);
-                        enrollment.put("unit_code", unitCode);
-                        enrollment.put("unit_name", unitName);
-                        enrollment.put("department", department);
-                        enrollment.put("year_of_study", yearOfStudy);
-                        enrollment.put("semester", semesterNum);
-
-                        db.collection("studentUnits").add(enrollment);
+                                            db.collection("studentUnits").add(enrollment);
+                                        }
+                                    });
+                        }
                     }
 
-                    Toast.makeText(this, "Enrolled " + course + " (" + year + " Year, Sem " + semester + ") to " + unitName, Toast.LENGTH_LONG).show();
+                    Toast.makeText(this,
+                            "Enrolled all " + course + " (Year " + year + ", Sem " + semester + ") to " + unitName,
+                            Toast.LENGTH_LONG).show();
                 });
     }
 }
