@@ -1,0 +1,31 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal">
+
+    <Button
+        android:id="@+id/btnCreateQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create QR Code" />
+
+    <Button
+        android:id="@+id/btnViewUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Units" />
+
+    <Button
+        android:id="@+id/btnViewAttendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Attendance" />
+
+    <Button
+        android:id="@+id/btnLogoutLecturer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout" />
+</LinearLayout>

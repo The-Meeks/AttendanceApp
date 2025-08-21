@@ -42,6 +42,8 @@
         <activity android:name=".AllocateUnitsActivity" android:exported="true"/>
         <activity android:name=".EnrollCourseActivity" android:exported="true"/>
         <activity android:name=".PromoteCourseActivity" android:exported="true"/>
+        <activity android:name=".LecturerDashboardActivity" android:exported="true"/>
+        <activity android:name=".ViewUnitsActivity" android:exported="true"/>
 
 
     </application>
