@@ -13,7 +13,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register Unit"
+            android:text="@string/register_unit_title"
             android:textSize="24sp"
             android:textStyle="bold"
             android:textColor="#2C3E50"
@@ -24,7 +24,7 @@
             android:id="@+id/etUnitCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Unit Code (e.g., CSC101)"
+            android:hint="@string/unit_code_hint"
             android:inputType="textCapCharacters"
             android:minHeight="48dp" />
 
@@ -32,7 +32,7 @@
             android:id="@+id/etUnitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Unit Name (e.g., Introduction to Programming)"
+            android:hint="@string/unit_name_hint"
             android:inputType="textCapWords"
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
@@ -42,6 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:prompt="@string/select_department"
             android:minHeight="48dp" />
 
         <Spinner
@@ -49,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:prompt="@string/select_year"
             android:minHeight="48dp" />
 
         <Spinner
@@ -56,13 +58,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
+            android:prompt="@string/select_semester"
             android:minHeight="48dp" />
 
         <Button
             android:id="@+id/btnRegisterUnit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Unit"
+            android:text="@string/register_unit_button"
             android:backgroundTint="#2980b9"
             android:textColor="#FFFFFF"
             android:layout_marginTop="24dp" />

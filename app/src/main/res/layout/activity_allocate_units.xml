@@ -11,48 +11,57 @@
         android:orientation="vertical"
         android:gravity="center_horizontal">
 
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Allocate Units"
+            android:text="@string/allocate_units"
             android:textSize="22sp"
             android:textStyle="bold"
+            android:textColor="#2C3E50"
             android:layout_marginBottom="20dp" />
 
+        <!-- Lecturer Spinner -->
         <Spinner
             android:id="@+id/spinnerLecturer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Unit Spinner -->
         <Spinner
             android:id="@+id/spinnerUnit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Year Spinner -->
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Semester Spinner -->
         <Spinner
             android:id="@+id/spinnerSemester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Allocate Button -->
         <Button
             android:id="@+id/btnAllocate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Allocate Unit"
-            android:textColor="#ffffff" />
-
+            android:text="@string/allocate_button"
+            android:backgroundTint="@color/blue_header"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:padding="12dp" />
     </LinearLayout>
 </ScrollView>

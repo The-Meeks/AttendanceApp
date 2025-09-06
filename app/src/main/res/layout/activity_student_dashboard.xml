@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="#f5f5f5">
+
+    <!-- Welcome text -->
+    <TextView
+        android:id="@+id/tvWelcomeStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome_student"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Scan QR -->
+    <TextView
+        android:id="@+id/btnScanQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_qr_code"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/scan_qr"
+        android:textSize="18sp"
+        android:background="@drawable/bg_button"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/scan_qr_icon_desc" />
+
+    <!-- View Units -->
+    <TextView
+        android:id="@+id/btnViewUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_units"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/view_units"
+        android:textSize="18sp"
+        android:background="@drawable/bg_button"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/units_icon_desc" />
+
+    <!-- View Attendance -->
+    <TextView
+        android:id="@+id/btnViewAttendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_attendance"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/view_attendance"
+        android:textSize="18sp"
+        android:background="@drawable/bg_button"
+        android:textColor="@android:color/white"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/attendance_icon_desc" />
+
+    <!-- Logout -->
+    <TextView
+        android:id="@+id/btnLogoutStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_logout"
+        android:drawablePadding="12dp"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:text="@string/logout"
+        android:textSize="18sp"
+        android:background="@android:color/holo_red_dark"
+        android:textColor="@android:color/white"
+        android:contentDescription="@string/logout_icon_desc" />
+
+</LinearLayout>

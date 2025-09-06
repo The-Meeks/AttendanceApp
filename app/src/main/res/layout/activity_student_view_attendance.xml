@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Dropdown to select unit -->
+    <Spinner
+        android:id="@+id/unitSpinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:minHeight="48dp"/>
+
+    <!-- Progress bar for attendance percentage -->
+    <ProgressBar
+        android:id="@+id/attendanceProgress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:progress="0"
+        android:max="100"
+        android:progressTint="@android:color/holo_green_dark"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Attendance summary text -->
+    <TextView
+        android:id="@+id/attendanceSummary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select a unit to view attendance"
+        android:textSize="16sp"
+        android:padding="8dp"
+         />
+
+</LinearLayout>

@@ -1,77 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp"
-    android:background="#f5f5f5"
-    android:gravity="center">
+    android:background="#f5f5f5">
 
     <!-- Title -->
     <TextView
+        android:id="@+id/tvLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Student Login"
-        android:textSize="28sp"
+        android:text="@string/student_login"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#2C3E50"
         android:layout_marginBottom="32dp" />
 
-    <!-- Login Card -->
-    <LinearLayout
+    <!-- Email -->
+    <EditText
+        android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/card_attendance_background"
-        android:padding="24dp"
-        android:elevation="4dp">
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"
+        android:drawableStart="@android:drawable/ic_dialog_email"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:textColor="#2C3E50"
+        android:textColorHint="#808080"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="16dp" />
 
-        <!-- Email -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:hint="Email Address"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- Password -->
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword"
+        android:autofillHints="password"
+        android:drawableStart="@android:drawable/ic_lock_lock"
+        android:drawablePadding="8dp"
+        android:padding="12dp"
+        android:textColor="#2C3E50"
+        android:textColorHint="#808080"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="24dp" />
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextEmail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:drawableStart="@drawable/ic_attendance"
-                android:drawablePadding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Password -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:hint="Password"
-            app:passwordToggleEnabled="true">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/editTextPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:drawableStart="@drawable/ic_attendance"
-                android:drawablePadding="12dp" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Login Button -->
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="LOGIN"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF"
-            android:background="@drawable/ic_launcher_background"
-            android:elevation="2dp" />
-    </LinearLayout>
+    <!-- Login Button -->
+    <Button
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/login"
+        android:textAllCaps="true"
+        android:padding="12dp"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

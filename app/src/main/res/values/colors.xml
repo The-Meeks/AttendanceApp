@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue_header">#1589FF</color>
+    <color name="gray_divider">#A9A9A9</color>
+    <color name="md_theme_light_primary">#005BAC</color>   <!-- Blue -->
+    <color name="md_theme_light_onPrimary">#FFFFFF</color> <!-- Text on primary -->
+
+    <color name="md_theme_dark_primary">#005BAC</color>
+    <color name="md_theme_dark_onPrimary">#FFFFFF</color>
 </resources>

@@ -10,96 +10,115 @@
         android:orientation="vertical"
         android:padding="24dp">
 
+        <!-- Title -->
         <TextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register Student"
+            android:text="@string/register_student_title"
             android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="#2C3E50"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
+        <!-- Full Name -->
         <EditText
             android:id="@+id/etFullName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:inputType="textCapWords"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp"
+            android:autofillHints="name" />
 
+        <!-- Registration Number -->
         <EditText
             android:id="@+id/etRegNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Registration Number"
+            android:hint="@string/reg_number"
             android:inputType="text"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp"
+            android:autofillHints="username" />
 
+        <!-- Phone -->
         <EditText
             android:id="@+id/etPhoneNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="phone"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp"
+            android:autofillHints="phone" />
 
+        <!-- Email -->
         <EditText
             android:id="@+id/etStudentEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp"
+            android:autofillHints="emailAddress" />
 
+        <!-- Password -->
         <EditText
             android:id="@+id/etStudentPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:layout_marginBottom="16dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp"
+            android:autofillHints="password" />
 
+        <!-- Department -->
         <Spinner
             android:id="@+id/spinnerStudentDept"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Course -->
         <Spinner
             android:id="@+id/spinnerStudentCourse"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Year -->
         <Spinner
             android:id="@+id/spinnerYear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="24dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
+
+        <!-- Semester -->
         <Spinner
             android:id="@+id/spinnerSemester"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
-            android:minHeight="48dp"/>
+            android:minHeight="48dp" />
 
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegisterStudent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Student"
-            android:backgroundTint="#27ae60"
-            android:textColor="#ffffff" />
+            android:text="@string/register_student_button"
+            android:backgroundTint="@color/blue_header"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
+            android:padding="12dp" />
 
     </LinearLayout>
 </ScrollView>

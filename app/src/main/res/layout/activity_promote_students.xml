@@ -1,41 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:padding="20dp"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#f5f5f5">
 
+    <!-- Department -->
     <Spinner
         android:id="@+id/spinnerDept"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/select_department"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Course -->
     <Spinner
         android:id="@+id/spinnerCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/select_course"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Year -->
     <Spinner
         android:id="@+id/spinnerYear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/select_year"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="12dp"/>
 
+    <!-- Semester -->
     <Spinner
         android:id="@+id/spinnerSemester"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:prompt="@string/select_semester"
-        android:minHeight="48dp"/>
+        android:minHeight="48dp"
+        android:layout_marginBottom="20dp"/>
 
+    <!-- Promote Button -->
     <Button
         android:id="@+id/btnPromoteCourse"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Promote Course" />
-
+        android:text="@string/promote_course_button"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:padding="12dp"/>
 </LinearLayout>

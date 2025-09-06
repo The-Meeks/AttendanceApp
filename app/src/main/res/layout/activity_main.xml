@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="24dp"
@@ -9,38 +8,45 @@
     android:gravity="center"
     android:background="#f5f5f5">
 
-
+    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DeKUT Attendance System"
+        android:text="@string/app_title"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#2C3E50"
         android:layout_marginBottom="32dp"
         android:layout_gravity="center" />
 
-
+    <!-- Admin -->
     <Button
         android:id="@+id/btnAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as Admin"
-        android:layout_marginBottom="16dp" />
+        android:text="@string/login_admin"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF" />
 
+    <!-- Student -->
     <Button
         android:id="@+id/btnStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as Student"
-        android:layout_marginBottom="16dp" />
+        android:text="@string/login_student"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF" />
 
-
+    <!-- Lecturer -->
     <Button
         android:id="@+id/btnLecturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login as Lecturer" />
+        android:text="@string/login_lecturer"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>

@@ -1,8 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+    <!-- Base application theme -->
     <style name="Base.Theme.AttendanceApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Primary brand color -->
+        <item name="colorPrimary">@color/md_theme_light_primary</item>
+        <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
+
+        <!-- Set system bars -->
+        <item name="android:statusBarColor">@color/md_theme_light_primary</item>
+        <item name="android:navigationBarColor">@color/md_theme_light_primary</item>
+
+        <!-- Control icon colors in status bar -->
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.AttendanceApp" parent="Base.Theme.AttendanceApp" />

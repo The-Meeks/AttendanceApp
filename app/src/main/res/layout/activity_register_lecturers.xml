@@ -10,42 +10,50 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Register Lecturer"
+            android:text="@string/register_lecturer_title"
             android:textSize="24sp"
             android:textStyle="bold"
+            android:textColor="#2C3E50"
             android:layout_gravity="center"
             android:layout_marginBottom="24dp" />
 
+        <!-- Full Name -->
         <EditText
             android:id="@+id/etLecturerName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Full Name"
+            android:hint="@string/full_name"
             android:minHeight="48dp"
-            android:inputType="textCapWords" />
+            android:inputType="textCapWords"
+            android:autofillHints="name" />
 
+        <!-- Phone -->
         <EditText
             android:id="@+id/etLecturerPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone Number"
+            android:hint="@string/phone_number"
             android:inputType="phone"
             android:minHeight="48dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:autofillHints="phone" />
 
+        <!-- PF Number -->
         <EditText
             android:id="@+id/etLecturerPFNumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="PF Number"
+            android:hint="@string/pf_number"
             android:minHeight="48dp"
             android:layout_marginTop="12dp"
-            android:inputType="text"/>
+            android:inputType="number"
+            android:autofillHints="username" />
 
+        <!-- Department -->
         <Spinner
             android:id="@+id/spinnerLecturerDept"
             android:layout_width="match_parent"
@@ -53,30 +61,39 @@
             android:layout_marginTop="12dp"
             android:minHeight="48dp" />
 
+        <!-- Email -->
         <EditText
             android:id="@+id/etLecturerEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email Address"
+            android:hint="@string/email_address"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:autofillHints="emailAddress" />
 
+        <!-- Password -->
         <EditText
             android:id="@+id/etLecturerPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:minHeight="48dp"
-            android:layout_marginTop="12dp" />
+            android:layout_marginTop="12dp"
+            android:autofillHints="password" />
 
+        <!-- Register Button -->
         <Button
             android:id="@+id/btnRegisterLecturer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Register Lecturer"
-            android:layout_marginTop="24dp" />
+            android:text="@string/register_lecturer_button"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/blue_header"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:padding="12dp" />
 
     </LinearLayout>
 </ScrollView>

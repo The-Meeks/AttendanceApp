@@ -1,119 +1,160 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5f5f5">
+    android:orientation="vertical"
+    android:background="#fffefe">
 
+    <!-- Header -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blue_header"
         android:orientation="vertical"
         android:padding="20dp">
 
         <TextView
+            android:id="@+id/tvAdminHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Admin Dashboard"
-            android:textSize="22sp"
+            android:text="@string/admin_dashboard"
+            android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="#2C3E50"
-            android:layout_gravity="center"
-            android:layout_marginBottom="20dp"/>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="12dp">
-
-            <Button
-                android:id="@+id/btnRegisterStudents"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Register Students"/>
-
-            <Button
-                android:id="@+id/btnRegisterLecturers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Register Lecturers"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="12dp">
-
-            <Button
-                android:id="@+id/btnRegisterUnits"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Units"/>
-
-            <Button
-                android:id="@+id/btnAllocateUnits"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Allocate Units"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="12dp">
-
-            <Button
-                android:id="@+id/btnEnrollStudents"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Enroll Students"/>
-
-            <Button
-                android:id="@+id/btnRemoveUsers"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Remove Users"
-                android:layout_marginStart="8dp"/>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
-            android:layout_marginBottom="12dp">
-
-            <Button
-                android:id="@+id/btnPromotion"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Promotion"/>
-            <Button
-                android:id="@+id/btnLogout"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Logout"
-                android:layout_marginStart="8dp"/>
-
-        </LinearLayout>
-
+            android:textColor="#FFFFFF" />
     </LinearLayout>
-</ScrollView>
+
+    <!-- Dashboard list -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Register Students -->
+        <TextView
+            android:id="@+id/btnRegisterStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_students"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/register_students"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Register Lecturers -->
+        <TextView
+            android:id="@+id/btnRegisterLecturers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_lecturers"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/register_lecturers"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Register Units -->
+        <TextView
+            android:id="@+id/btnRegisterUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_units"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/register_units"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Allocate Units -->
+        <TextView
+            android:id="@+id/btnAllocateUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_assign"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/allocate_units"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Enroll Students -->
+        <TextView
+            android:id="@+id/btnEnrollStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_enroll"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/enroll_students"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Promotion -->
+        <TextView
+            android:id="@+id/btnPromotion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_promotion"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/promotion"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Remove Users -->
+        <TextView
+            android:id="@+id/btnRemoveUsers"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_delete"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/remove_users"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Logout -->
+        <TextView
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_logout"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/logout"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark" />
+    </LinearLayout>
+</LinearLayout>

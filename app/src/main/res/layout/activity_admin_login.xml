@@ -7,50 +7,58 @@
     android:padding="24dp"
     android:background="#f5f5f5">
 
-
+    <!-- Title -->
     <TextView
         android:id="@+id/tvLoginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Admin Login"
+        android:text="@string/admin_login"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="#2C3E50"
         android:layout_marginBottom="32dp" />
 
-
+    <!-- Email -->
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="@string/email"
         android:inputType="textEmailAddress"
+        android:autofillHints="emailAddress"
         android:drawableStart="@android:drawable/ic_dialog_email"
         android:drawablePadding="8dp"
         android:padding="12dp"
         android:background="@android:drawable/edit_text"
+        android:textColor="#2C3E50"
+        android:textColorHint="#808080"
         android:layout_marginBottom="16dp" />
 
-
+    <!-- Password -->
     <EditText
         android:id="@+id/editTextPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="@string/password"
         android:inputType="textPassword"
+        android:autofillHints="password"
         android:drawableStart="@android:drawable/ic_lock_lock"
         android:drawablePadding="8dp"
         android:padding="12dp"
         android:background="@android:drawable/edit_text"
+        android:textColor="#2C3E50"
+        android:textColorHint="#808080"
         android:layout_marginBottom="24dp" />
 
-
+    <!-- Login Button -->
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="LOGIN"
+        android:text="@string/login"
         android:textAllCaps="true"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:backgroundTint="@color/blue_header"
+        android:textColor="#FFFFFF" />
 
 </LinearLayout>
