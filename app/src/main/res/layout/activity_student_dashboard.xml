@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="#f5f5f5">
+
+    <!-- Welcome text -->
+    <TextView
+        android:id="@+id/tvWelcomeStudent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome, Student"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Scan QR button -->
+    <Button
+        android:id="@+id/btnScanQR"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Scan QR Code"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- View Units button -->
+    <Button
+        android:id="@+id/btnViewUnits"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Units"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- View Attendance button -->
+    <Button
+        android:id="@+id/btnViewAttendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="View Attendance"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Logout button -->
+    <Button
+        android:id="@+id/btnLogoutStudent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+       />
+
+</LinearLayout>
