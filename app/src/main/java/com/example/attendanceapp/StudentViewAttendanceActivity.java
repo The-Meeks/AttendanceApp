@@ -1,26 +1,21 @@
 package com.example.attendanceapp;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class StudentViewAttendanceActivity extends AppCompatActivity {
 
@@ -28,11 +23,10 @@ public class StudentViewAttendanceActivity extends AppCompatActivity {
     private ProgressBar attendanceProgress;
     private TextView attendanceSummary;
 
-    private FirebaseAuth mAuth;
     private FirebaseFirestore db;
+    private FirebaseUser currentUser;
 
-    private List<String> unitList = new ArrayList<>();
-    private List<String> unitCodes = new ArrayList<>();
+    private ArrayList<String> unitList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,107 +37,76 @@ public class StudentViewAttendanceActivity extends AppCompatActivity {
         attendanceProgress = findViewById(R.id.attendanceProgress);
         attendanceSummary = findViewById(R.id.attendanceSummary);
 
-        mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (currentUser == null) {
+            Toast.makeText(this, "Not logged in", Toast.LENGTH_SHORT).show();
+            finish();
+            return;
+        }
 
         loadStudentUnits();
     }
 
     private void loadStudentUnits() {
-        String studentId = mAuth.getCurrentUser().getUid();
-        CollectionReference unitsRef = db.collection("studentUnits");
-
-        unitsRef.whereEqualTo("student_id", studentId)
+        db.collection("attendance")
+                .whereEqualTo("student_id", currentUser.getUid())
                 .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        unitList.clear();
-                        unitCodes.clear();
+                .addOnSuccessListener(query -> {
+                    HashSet<String> uniqueUnits = new HashSet<>();
+                    for (QueryDocumentSnapshot doc : query) {
+                        String unit = doc.getString("unit_code");
+                        if (unit != null) uniqueUnits.add(unit);
+                    }
 
-                        // Add default option
-                        unitList.add("Select a unit to view attendance");
-                        unitCodes.add(""); // placeholder for default
+                    unitList.clear();
+                    unitList.addAll(uniqueUnits);
 
-                        for (DocumentSnapshot doc : task.getResult().getDocuments()) {
-                            String unitName = doc.getString("unit_name");
-                            String unitCode = doc.getString("unit_code");
-                            if (unitName != null && unitCode != null) {
-                                unitList.add(unitCode + " - " + unitName);
-                                unitCodes.add(unitCode);
+                    if (unitList.isEmpty()) {
+                        unitList.add("No attendance records");
+                    }
+
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                            this, android.R.layout.simple_spinner_item, unitList);
+                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                    unitSpinner.setAdapter(adapter);
+
+                    unitSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(android.widget.AdapterView<?> parent, android.view.View view, int position, long id) {
+                            if (!unitList.get(position).equals("No attendance records")) {
+                                calculateAttendance(unitList.get(position));
+                            } else {
+                                attendanceSummary.setText("Select a unit to view attendance");
                             }
                         }
 
-                        ArrayAdapter<String> adapter = new ArrayAdapter<>(
-                                StudentViewAttendanceActivity.this,
-                                android.R.layout.simple_spinner_item,
-                                unitList
-                        );
-                        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                        unitSpinner.setAdapter(adapter);
-
-                        // Listener for unit selection
-                        unitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                            @Override
-                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                                if (position > 0 && position < unitCodes.size()) {
-                                    loadAttendanceForUnit(unitCodes.get(position));
-                                } else {
-                                    attendanceSummary.setText("Select a unit to view attendance");
-                                    attendanceProgress.setProgress(0);
-                                }
-                            }
-
-                            @Override
-                            public void onNothingSelected(AdapterView<?> parent) {}
-                        });
-                    }
-                });
+                        @Override
+                        public void onNothingSelected(android.widget.AdapterView<?> parent) { }
+                    });
+                })
+                .addOnFailureListener(e ->
+                        Toast.makeText(this, "Failed to load units", Toast.LENGTH_SHORT).show()
+                );
     }
 
-    private void loadAttendanceForUnit(String unitCode) {
-        String studentId = mAuth.getCurrentUser().getUid();
-
-        // Fetch sessions for the unit
-        db.collection("sessions")
+    private void calculateAttendance(String unitCode) {
+        db.collection("attendance")
+                .whereEqualTo("student_id", currentUser.getUid())
                 .whereEqualTo("unit_code", unitCode)
                 .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful() && task.getResult() != null) {
-                        int plannedSessions = task.getResult().size();
-                        if (plannedSessions == 0) {
-                            attendanceSummary.setText("No sessions found for this unit.");
-                            attendanceProgress.setProgress(0);
-                            return;
-                        }
+                .addOnSuccessListener(query -> {
+                    int attended = query.size(); // how many times student attended
+                    int total = attended; // replace with real total sessions count if you track it
 
-                        // Now check attendance
-                        db.collection("attendance")
-                                .whereEqualTo("student_id", studentId)
-                                .whereEqualTo("unit_code", unitCode)
-                                .get()
-                                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                    @Override
-                                    public void onComplete(@NonNull Task<QuerySnapshot> attendanceTask) {
-                                        if (attendanceTask.isSuccessful() && attendanceTask.getResult() != null) {
-                                            int attended = attendanceTask.getResult().size();
-                                            int missed = plannedSessions - attended;
-                                            int remaining = plannedSessions - (attended + missed);
+                    int percentage = (total > 0) ? (attended * 100 / total) : 0;
 
-                                            int percentage = (int) (((double) attended / plannedSessions) * 100);
-
-                                            String summary = "Unit: " + unitCode +
-                                                    "\nPlanned Sessions: " + plannedSessions +
-                                                    "\nAttended: " + attended +
-                                                    "\nMissed: " + missed +
-                                                    "\nRemaining: " + (remaining < 0 ? 0 : remaining) +
-                                                    "\nAttendance %: " + percentage + "%";
-
-                                            attendanceSummary.setText(summary);
-                                            attendanceProgress.setProgress(percentage);
-                                        }
-                                    }
-                                });
-                    }
+                    attendanceProgress.setProgress(percentage);
+                    attendanceSummary.setText("Unit: " + unitCode +
+                            "\nAttended: " + attended +
+                            " | Total: " + total +
+                            " | Attendance %: " + percentage + "%");
                 });
     }
 }

@@ -1,52 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="24dp"
+    android:background="#FFFFFF"
+    android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:gravity="center"
-    android:background="#f5f5f5">
+    android:padding="24dp">
+
+    <!-- Top Logo -->
+    <ImageView
+        android:id="@+id/imgLogo"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_graduation_cap" />
 
     <!-- Title -->
     <TextView
-        android:id="@+id/tvTitle"
+        android:id="@+id/tvWelcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_title"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#2C3E50"
-        android:layout_marginBottom="32dp"
-        android:layout_gravity="center" />
+        android:layout_marginBottom="4dp"
+        android:text="Welcome Back"
+        android:textColor="#000000"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-    <!-- Admin -->
-    <Button
-        android:id="@+id/btnAdmin"
-        android:layout_width="match_parent"
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/tvSubtitle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/login_admin"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/blue_header"
-        android:textColor="#FFFFFF" />
+        android:layout_marginBottom="32dp"
+        android:text="Please select your role to continue"
+        android:textColor="#7B7B7B"
+        android:textSize="20sp" />
 
-    <!-- Student -->
     <Button
         android:id="@+id/btnStudent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_student"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="@color/blue_header"
-        android:textColor="#FFFFFF" />
+        android:text="Student"
+        android:textSize="18sp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/ic_students"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="16dp" />
 
-    <!-- Lecturer -->
     <Button
         android:id="@+id/btnLecturer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/login_lecturer"
-        android:backgroundTint="@color/blue_header"
-        android:textColor="#FFFFFF" />
+        android:text="Lecturer"
+        android:textSize="18sp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/ic_lecturers"
+        android:drawablePadding="8dp"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btnAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin"
+        android:textSize="18sp"
+        android:backgroundTint="#1976D2"
+        android:textColor="#FFFFFF"
+        android:drawableLeft="@drawable/ic_admin"
+        android:drawablePadding="10dp" />
+
+
+    <!-- Footer Note -->
+    <TextView
+        android:id="@+id/tvFooter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="New students and lecturers, please contact admin for registration."
+        android:textColor="#7B7B7B"
+        android:textSize="18sp" />
 
 </LinearLayout>

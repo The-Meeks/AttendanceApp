@@ -21,6 +21,16 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF" />
+
+        <!-- 🔹 Dynamic Welcome Text -->
+        <TextView
+            android:id="@+id/tvWelcomeLecturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_lecturer"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
     </LinearLayout>
 
     <!-- Dashboard list -->

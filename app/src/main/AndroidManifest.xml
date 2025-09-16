@@ -47,7 +47,7 @@
         <activity android:name=".PromoteCourseActivity" android:exported="true"/>
         <activity android:name=".LecturerDashboardActivity" android:exported="true"/>
         <activity android:name=".ViewUnitsActivity" android:exported="true"/>
-        <activity android:name=".LectureGenerateQRActivity" android:exported="true"/>
+        <activity android:name=".LecturerGenerateQRActivity" android:exported="true"/>
         <activity android:name=".StudentDashboardActivity" android:exported="true"/>
         <activity android:name=".StudentUnitsActivity" android:exported="true"/>
         <activity android:name=".StudentScanQRActivity" android:exported="true"/>

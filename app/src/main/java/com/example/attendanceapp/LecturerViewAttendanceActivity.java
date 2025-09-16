@@ -1,9 +1,6 @@
 package com.example.attendanceapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -14,12 +11,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 
 public class LecturerViewAttendanceActivity extends AppCompatActivity {
@@ -30,17 +28,14 @@ public class LecturerViewAttendanceActivity extends AppCompatActivity {
     private Button btnDownload;
 
     private FirebaseFirestore db;
-    private String lecturerId;
-    private ArrayList<String> unitList = new ArrayList<>();
-    private ArrayList<String> unitCodes = new ArrayList<>();
+    private FirebaseAuth auth;
 
-    private ArrayList<String> sessionDisplayList = new ArrayList<>();
-    private ArrayList<String> sessionIds = new ArrayList<>();
-    private ArrayAdapter<String> sessionAdapter;
+    private ArrayList<String> unitDisplayList = new ArrayList<>();
+    private ArrayList<String> unitCodeList = new ArrayList<>();
+    private ArrayAdapter<String> spinnerAdapter;
+    private ArrayAdapter<String> attendanceAdapter;
 
-    private int totalEnrolled = 0;
-    private int totalAttended = 0;
-    private int totalSessions = 0;
+    private ArrayList<String> attendanceList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,123 +48,117 @@ public class LecturerViewAttendanceActivity extends AppCompatActivity {
         btnDownload = findViewById(R.id.btnDownload);
 
         db = FirebaseFirestore.getInstance();
-        lecturerId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        auth = FirebaseAuth.getInstance();
 
-        // Adapter for sessions
-        sessionAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sessionDisplayList);
-        sessionListView.setAdapter(sessionAdapter);
+        // Spinner adapter
+        spinnerAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, unitDisplayList);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitSpinner.setAdapter(spinnerAdapter);
+
+        // ListView adapter
+        attendanceAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, attendanceList);
+        sessionListView.setAdapter(attendanceAdapter);
 
         loadLecturerUnits();
 
-        // Handle unit selection
-        unitSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        unitSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String unitCode = unitCodes.get(position);
-                loadSessions(unitCode);
+            public void onItemSelected(android.widget.AdapterView<?> adapterView, android.view.View view, int position, long id) {
+                if (position == 0) {
+                    attendanceList.clear();
+                    attendanceAdapter.notifyDataSetChanged();
+                    summaryText.setText("Select a unit to view attendance");
+                } else {
+                    String selectedUnitCode = unitCodeList.get(position);
+                    loadAttendance(selectedUnitCode);
+                }
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {}
+            public void onNothingSelected(android.widget.AdapterView<?> adapterView) {}
         });
 
-        // Handle session click → show details
-        sessionListView.setOnItemClickListener((parent, view, position, id) -> {
-            String sessionId = sessionIds.get(position);
-            String unitCode = unitCodes.get(unitSpinner.getSelectedItemPosition());
-
-            Intent intent = new Intent(LecturerViewAttendanceActivity.this, SessionAttendanceActivity.class);
-            intent.putExtra("unit_code", unitCode);
-            intent.putExtra("session_id", sessionId);
-            startActivity(intent);
+        btnDownload.setOnClickListener(v -> {
+            // Later: implement CSV/PDF export
+            Toast.makeText(this, "Download feature coming soon", Toast.LENGTH_SHORT).show();
         });
-
-        // Download attendance report (placeholder)
-        btnDownload.setOnClickListener(v ->
-                Toast.makeText(this, "Download feature coming soon...", Toast.LENGTH_SHORT).show()
-        );
     }
 
     private void loadLecturerUnits() {
-        db.collection("lecturerUnits")
-                .whereEqualTo("lecturer_id", lecturerId)
-                .get()
-                .addOnSuccessListener(querySnapshot -> {
-                    unitList.clear();
-                    unitCodes.clear();
-                    for (QueryDocumentSnapshot doc : querySnapshot) {
-                        String unitCode = doc.getString("unit_code");
-                        String unitName = doc.getString("unit_name");
-                        unitList.add(unitCode + " - " + unitName);
-                        unitCodes.add(unitCode);
-                    }
+        unitDisplayList.clear();
+        unitCodeList.clear();
 
-                    ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                            android.R.layout.simple_spinner_item, unitList);
-                    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                    unitSpinner.setAdapter(adapter);
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error loading units: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
-    }
+        unitDisplayList.add("Select a unit to view attendance"); // default
+        unitCodeList.add(""); // placeholder
 
-    private void loadSessions(String unitCode) {
-        sessionDisplayList.clear();
-        sessionIds.clear();
-        totalSessions = 0;
-        totalAttended = 0;
+        String lecturerId = auth.getCurrentUser().getUid();
 
         db.collection("lecturerSessions")
-                .whereEqualTo("unit_code", unitCode)
+                .whereEqualTo("lecturer_id", lecturerId)
                 .get()
-                .addOnSuccessListener(querySnapshot -> {
-                    if (querySnapshot.isEmpty()) {
-                        sessionAdapter.notifyDataSetChanged();
-                        summaryText.setText("No sessions found for this unit.");
-                        return;
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            String unitCode = doc.getString("unit_code");
+                            String unitName = doc.getString("unit_name");
+                            if (unitCode != null && unitName != null) {
+                                unitDisplayList.add(unitName + " (" + unitCode + ")");
+                                unitCodeList.add(unitCode);
+                            }
+                        }
+                        spinnerAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(this, "Failed to load units", Toast.LENGTH_SHORT).show();
                     }
-
-                    for (QueryDocumentSnapshot doc : querySnapshot) {
-                        totalSessions++;
-                        String sessionId = doc.getId();
-                        sessionIds.add(sessionId);
-
-                        long createdAt = doc.getLong("createdAt") != null ? doc.getLong("createdAt") : 0;
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault());
-                        String dateStr = createdAt > 0 ? sdf.format(createdAt) : "Unknown Date";
-
-                        CollectionReference attendanceRef = doc.getReference().collection("attendance");
-                        attendanceRef.get().addOnSuccessListener(attSnap -> {
-                            int attendedCount = attSnap.size();
-                            totalAttended += attendedCount;
-
-                            String displayText = "Session: " + dateStr + "\nAttended: " + attendedCount + " students";
-                            sessionDisplayList.add(displayText);
-                            sessionAdapter.notifyDataSetChanged();
-
-                            updateSummary(unitCode);
-                        });
-                    }
-                })
-                .addOnFailureListener(e ->
-                        Toast.makeText(this, "Error loading sessions: " + e.getMessage(), Toast.LENGTH_SHORT).show()
-                );
+                });
     }
 
-    private void updateSummary(String unitCode) {
-        db.collection("studentUnits")
+    private void loadAttendance(String unitCode) {
+        attendanceList.clear();
+
+        db.collection("attendance")
                 .whereEqualTo("unit_code", unitCode)
                 .get()
-                .addOnSuccessListener(querySnapshot -> {
-                    totalEnrolled = querySnapshot.size();
-                    int absent = totalEnrolled * totalSessions - totalAttended;
-                    double percentage = totalEnrolled > 0 ? (totalAttended * 100.0) / (totalEnrolled * totalSessions) : 0;
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        int attended = 0;
+                        int total = 0;
 
-                    summaryText.setText("Total Enrolled: " + totalEnrolled +
-                            " | Attended: " + totalAttended +
-                            " | Absent: " + absent +
-                            " | Attendance %: " + String.format(Locale.getDefault(), "%.2f", percentage));
+                        if (task.getResult().isEmpty()) {
+                            attendanceList.add("No attendance records found");
+                        } else {
+                            for (DocumentSnapshot doc : task.getResult()) {
+                                String name = doc.getString("full_name");
+                                String reg = doc.getString("reg_number");
+                                Long timestamp = doc.getLong("timestamp");
+
+                                String time = "";
+                                if (timestamp != null) {
+                                    time = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.getDefault())
+                                            .format(new Date(timestamp));
+                                }
+
+                                attendanceList.add(name + " (" + reg + ")\nTime: " + time);
+
+                                attended++;
+                                total++; // here total = attended (unless you also store absentees separately)
+                            }
+                        }
+
+                        // Update summary
+                        int enrolled = 40; // TODO: fetch actual total enrolled from "students" collection
+                        int absent = enrolled - attended;
+                        double percent = enrolled > 0 ? (attended * 100.0 / enrolled) : 0;
+
+                        summaryText.setText("Total Enrolled: " + enrolled +
+                                " | Attended: " + attended +
+                                " | Absent: " + absent +
+                                " | Attendance %: " + String.format(Locale.getDefault(), "%.1f", percent) + "%");
+
+                        attendanceAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(this, "Error loading attendance", Toast.LENGTH_SHORT).show();
+                    }
                 });
     }
 }

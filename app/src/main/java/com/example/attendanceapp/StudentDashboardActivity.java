@@ -8,11 +8,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class StudentDashboardActivity extends AppCompatActivity {
 
     private TextView tvWelcome, btnScanQR, btnViewAttendance, btnViewUnits, btnLogout;
     private FirebaseAuth mAuth;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +22,7 @@ public class StudentDashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_dashboard);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
 
         // UI references
         tvWelcome = findViewById(R.id.tvWelcomeStudent);
@@ -28,11 +31,23 @@ public class StudentDashboardActivity extends AppCompatActivity {
         btnViewUnits = findViewById(R.id.btnViewUnits);
         btnLogout = findViewById(R.id.btnLogoutStudent);
 
-        // Display student's email or name dynamically
+        // Display student's name from Firestore
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String email = user.getEmail();
-            tvWelcome.setText("Welcome, " + email);
+            String uid = user.getUid();
+            db.collection("students").document(uid)
+                    .get()
+                    .addOnSuccessListener(documentSnapshot -> {
+                        if (documentSnapshot.exists()) {
+                            String fullName = documentSnapshot.getString("full_name");
+                            if (fullName != null) {
+                                tvWelcome.setText("Welcome, " + fullName);
+                            } else {
+                                tvWelcome.setText("Welcome, Student");
+                            }
+                        }
+                    })
+                    .addOnFailureListener(e -> tvWelcome.setText("Welcome"));
         }
 
         // Button actions
