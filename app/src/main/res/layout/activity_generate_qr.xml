@@ -20,21 +20,25 @@
         <Spinner
             android:id="@+id/spinnerUnits"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:minHeight="48dp" />
 
         <EditText
             android:id="@+id/etDurationMins"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Duration (minutes)"
-            android:inputType="number" />
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:layout_marginBottom="20dp"/>
 
 
         <Button
             android:id="@+id/btnGenerate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generate QR" />
+            android:text="Generate QR"
+            />
 
         <ImageView
             android:id="@+id/imageQR"

@@ -3,82 +3,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="#f5f5f5">
+    android:background="@color/white">
 
-    <!-- Welcome text -->
-    <TextView
-        android:id="@+id/tvWelcomeStudent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/welcome_student"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@android:color/black"
-        android:layout_marginBottom="32dp" />
-
-    <!-- Scan QR -->
-    <TextView
-        android:id="@+id/btnScanQR"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_qr_code"
-        android:drawablePadding="12dp"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:text="@string/scan_qr"
-        android:textSize="18sp"
-        android:background="@drawable/bg_button"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/scan_qr_icon_desc" />
+        android:background="@color/blue_header"
+        android:orientation="vertical"
+        android:padding="20dp">
 
-    <!-- View Units -->
-    <TextView
-        android:id="@+id/btnViewUnits"
+        <TextView
+            android:id="@+id/tvStudentHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/student_dashboard"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/tvWelcomeStudent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_student"
+            android:textSize="20sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="8dp" />
+    </LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_units"
-        android:drawablePadding="12dp"
-        android:gravity="center_vertical"
+        android:orientation="vertical"
         android:padding="16dp"
-        android:text="@string/view_units"
-        android:textSize="18sp"
-        android:background="@drawable/bg_button"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/units_icon_desc" />
+        android:layout_marginTop="34dp">
 
-    <!-- View Attendance -->
-    <TextView
-        android:id="@+id/btnViewAttendance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_attendance"
-        android:drawablePadding="12dp"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:text="@string/view_attendance"
-        android:textSize="18sp"
-        android:background="@drawable/bg_button"
-        android:textColor="@android:color/white"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/attendance_icon_desc" />
+        <TextView
+            android:id="@+id/btnScanQR"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_qr_code"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/scan_qr"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
 
-    <!-- Logout -->
-    <TextView
-        android:id="@+id/btnLogoutStudent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableStart="@drawable/ic_logout"
-        android:drawablePadding="12dp"
-        android:gravity="center_vertical"
-        android:padding="16dp"
-        android:text="@string/logout"
-        android:textSize="18sp"
-        android:background="@android:color/holo_red_dark"
-        android:textColor="@android:color/white"
-        android:contentDescription="@string/logout_icon_desc" />
+        <TextView
+            android:id="@+id/btnViewUnits"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_units"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/view_units"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
 
+        <TextView
+            android:id="@+id/btnViewAttendance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_attendance"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/view_attendance"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@drawable/bg_button"
+            android:layout_marginBottom="12dp" />
+
+        <TextView
+            android:id="@+id/btnLogoutStudent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_logout"
+            android:drawablePadding="12dp"
+            android:gravity="center_vertical"
+            android:padding="16dp"
+            android:text="@string/logout"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@android:color/holo_red_dark" />
+
+    </LinearLayout>
 </LinearLayout>

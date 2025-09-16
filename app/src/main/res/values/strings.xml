@@ -74,6 +74,7 @@
     <string name="attendance_icon_desc">Attendance icon</string>
     <string name="logout_icon_desc">Logout icon</string>
     <string name="welcome_student">Welcome, Student</string>
+    <string name="welcome_lecturer">Welcome, Lecturer</string>
     <string name="create_qr_icon_desc">Create QR icon</string>
 </resources>
 
