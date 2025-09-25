@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="admin_emails">
+        <item>admin@dekut.ac.ke</item>
+    </string-array>
+</resources> 

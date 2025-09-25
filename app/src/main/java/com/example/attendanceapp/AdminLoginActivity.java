@@ -80,7 +80,7 @@ public class AdminLoginActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
-                            if (user != null && "admin@dekut.ac.ke".equals(user.getEmail())) {
+                            if (user != null) {
                                 Toast.makeText(AdminLoginActivity.this,
                                         "Login successful", Toast.LENGTH_SHORT).show();
 
@@ -92,7 +92,7 @@ public class AdminLoginActivity extends AppCompatActivity {
                             } else {
                                 mAuth.signOut();
                                 Toast.makeText(AdminLoginActivity.this,
-                                        "Access denied: Admin credentials required",
+                                        "Access denied: Invalid user",
                                         Toast.LENGTH_LONG).show();
                             }
                         } else {
@@ -111,10 +111,21 @@ public class AdminLoginActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null && "admin@dekut.ac.ke".equals(currentUser.getEmail())) {
+        if (currentUser != null) {
             // Auto-login if already signed in
             startActivity(new Intent(this, AdminDashboardActivity.class));
             finish();
         }
+    }
+
+    private boolean isAdminEmail(String email) {
+        if (email == null) return false;
+        String[] adminEmails = getResources().getStringArray(R.array.admin_emails);
+        for (String allowed : adminEmails) {
+            if (email.trim().equalsIgnoreCase(allowed.trim())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

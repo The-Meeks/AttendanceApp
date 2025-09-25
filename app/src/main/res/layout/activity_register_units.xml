@@ -61,6 +61,58 @@
             android:prompt="@string/select_semester"
             android:minHeight="48dp" />
 
+        <!-- Day of Week -->
+        <Spinner
+            android:id="@+id/spinnerDayOfWeek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:prompt="@string/select_day_of_week"
+            android:minHeight="48dp" />
+
+        <!-- Allocated time -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Allocated Time"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <EditText
+                android:id="@+id/etStartTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Start time (e.g., 11:00 AM)"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:minHeight="48dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="  -  "
+                android:layout_gravity="center_vertical"/>
+
+            <EditText
+                android:id="@+id/etEndTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="End time (e.g., 1:00 PM)"
+                android:focusable="false"
+                android:clickable="true"
+                android:inputType="none"
+                android:minHeight="48dp"/>
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnRegisterUnit"
             android:layout_width="match_parent"

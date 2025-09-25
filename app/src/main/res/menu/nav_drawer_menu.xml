@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_register_students" android:title="Register Students" android:icon="@drawable/ic_students"/>
+    <item android:id="@+id/nav_register_lecturers" android:title="Register Lecturers" android:icon="@drawable/ic_lecturers"/>
+    <item android:id="@+id/nav_manage_units" android:title="Register Units" android:icon="@drawable/ic_units"/>
+    <item android:id="@+id/nav_allocate_units" android:title="Allocate Units" android:icon="@drawable/ic_assign"/>
+    <item android:id="@+id/nav_enroll_students" android:title="Enroll Students" android:icon="@drawable/ic_enroll"/>
+    <item android:id="@+id/nav_promotion" android:title="Promotion" android:icon="@drawable/ic_promotion"/>
+    <item android:id="@+id/nav_remove_users" android:title="Remove Users" android:icon="@drawable/ic_delete"/>
+    <item android:id="@+id/nav_reports" android:title="Reports" android:icon="@drawable/ic_units"/>
+    <item android:id="@+id/nav_logout" android:title="Logout" android:icon="@drawable/ic_logout"/>
+</menu>

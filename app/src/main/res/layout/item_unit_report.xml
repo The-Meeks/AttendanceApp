@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="12dp"
+    android:background="@android:color/white"
+    android:elevation="2dp"
+    android:layout_marginBottom="8dp">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
+        <TextView
+            android:id="@+id/tvUnitName"
+            android:text="Unit Name"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvUnitCode"
+            android:text="Unit Code"
+            android:textSize="12sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvSessionInfo"
+            android:text="Sessions: 0 | Students: 0"
+            android:textSize="11sp"
+            android:textColor="@android:color/darker_gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvAttendancePercentage"
+        android:text="0%"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:textColor="#2ECC71"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>

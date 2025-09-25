@@ -28,7 +28,7 @@
 
         <!-- Admin Login & Dashboard -->
         <activity android:name=".AdminLoginActivity" android:exported="true" />
-        <activity android:name=".AdminDashboardActivity" android:exported="true" />
+        <activity android:name=".AdminDashboardActivity" android:exported="true" android:theme="@style/Theme.Material3.DayNight.NoActionBar" />
 
         <!-- Register Activities -->
         <activity android:name=".RegisterStudentsActivity" android:exported="true" />

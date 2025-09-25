@@ -68,7 +68,8 @@
     <string name="scan_qr">Scan Code</string>
     <string name="select_units">Select Units</string>
     <string name="view_units">View Units</string>
-    <string name="view_attendance">View Attendance</string>>
+    <string name="view_attendance">View Attendance</string>
+    <string name="select_day_of_week">Select Day of Week</string>
     <string name="scan_qr_icon_desc">Scan QR icon</string>
     <string name="units_icon_desc">Units icon</string>
     <string name="attendance_icon_desc">Attendance icon</string>
@@ -76,5 +77,7 @@
     <string name="welcome_student">Welcome, Student</string>
     <string name="welcome_lecturer">Welcome, Lecturer</string>
     <string name="create_qr_icon_desc">Create QR icon</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
 

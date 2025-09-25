@@ -1,160 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fffefe">
+    android:layout_height="match_parent">
 
-    <!-- Header -->
+    <!-- MAIN SCREEN -->
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/blue_header"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/tvAdminHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/admin_dashboard"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
+        <!-- Toolbar -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_header"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Admin Dashboard" />
+
+        <!-- Scrollable content -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="12dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!-- Quick Stats -->
+                <TextView
+                    android:text="Quick Stats"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:padding="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- Lecturers -->
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTotalLecturers"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Lecturers"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Students -->
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTotalStudents"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Students"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+
+                    <!-- Units -->
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:id="@+id/tvTotalUnits"
+                            android:text="0"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:text="Units"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Lecturer Management -->
+                <TextView
+                    android:text="Lecturer Management"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:id="@+id/rowAssignUnits"
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:elevation="2dp"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Assign Units"
+                            android:textSize="15sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:elevation="2dp"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="View Missed Sessions"
+                            android:textSize="15sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:padding="12dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@android:color/white"
+                        android:elevation="2dp"
+                        android:layout_marginBottom="8dp">
+                        <TextView
+                            android:text="Approve Make-ups"
+                            android:textSize="15sp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Unit Reports -->
+                <TextView
+                    android:text="Unit Reports"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <!-- Dynamic Unit Reports RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerUnitReports"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"/>
+                
+                <!-- Empty state message -->
+                <TextView
+                    android:id="@+id/tvEmptyReports"
+                    android:text="No unit reports available"
+                    android:textSize="14sp"
+                    android:textColor="@android:color/darker_gray"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
+
+                <!-- Alerts -->
+                <TextView
+                    android:text="Alerts"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="12dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:elevation="2dp">
+                    <TextView
+                        android:text="Student Absences"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                    <TextView
+                        android:text="Recent classes show increased absences. Review attendance reports."
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <!-- Bottom Nav removed as requested -->
     </LinearLayout>
 
-    <!-- Dashboard list -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <!-- Register Students -->
-        <TextView
-            android:id="@+id/btnRegisterStudents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_students"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/register_students"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Register Lecturers -->
-        <TextView
-            android:id="@+id/btnRegisterLecturers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_lecturers"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/register_lecturers"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Register Units -->
-        <TextView
-            android:id="@+id/btnRegisterUnits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_units"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/register_units"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Allocate Units -->
-        <TextView
-            android:id="@+id/btnAllocateUnits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_assign"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/allocate_units"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Enroll Students -->
-        <TextView
-            android:id="@+id/btnEnrollStudents"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_enroll"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/enroll_students"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Promotion -->
-        <TextView
-            android:id="@+id/btnPromotion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_promotion"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/promotion"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Remove Users -->
-        <TextView
-            android:id="@+id/btnRemoveUsers"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_delete"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/remove_users"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <!-- Logout -->
-        <TextView
-            android:id="@+id/btnLogout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_logout"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/logout"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_red_dark" />
-    </LinearLayout>
-</LinearLayout>
+    <!-- NAVIGATION DRAWER -->
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:menu="@menu/nav_drawer_menu"
+        app:headerLayout="@layout/nav_header_admin"/>
+</androidx.drawerlayout.widget.DrawerLayout>

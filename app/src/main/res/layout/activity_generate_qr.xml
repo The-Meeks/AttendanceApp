@@ -23,29 +23,86 @@
             android:layout_height="wrap_content"
             android:minHeight="48dp" />
 
+        <!-- Check-in controls -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-in"
+            android:textStyle="bold"
+            android:paddingTop="12dp" />
+
         <EditText
-            android:id="@+id/etDurationMins"
+            android:id="@+id/etCheckInMins"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Duration (minutes)"
+            android:hint="Check-in expiry (minutes)"
             android:inputType="number"
             android:minHeight="48dp"
-            android:layout_marginBottom="20dp"/>
-
+            android:layout_marginBottom="8dp"/>
 
         <Button
-            android:id="@+id/btnGenerate"
+            android:id="@+id/btnGenerateCheckIn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Generate QR"
-            />
+            android:text="Generate Check-in QR" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-in QR"
+            android:textStyle="bold"
+            android:paddingTop="12dp" />
+
+        <TextView
+            android:id="@+id/tvCheckInWindow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valid: --"
+            android:paddingBottom="4dp" />
 
         <ImageView
-            android:id="@+id/imageQR"
+            android:id="@+id/imageQRCheckIn"
             android:layout_width="300dp"
             android:layout_height="300dp"
-            android:layout_marginTop="12dp"
-            android:contentDescription="QR code" />
+            android:layout_marginTop="4dp"
+            android:contentDescription="Check-in QR code" />
+
+        <!-- Check-out controls -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check-out"
+            android:textStyle="bold"
+            android:paddingTop="16dp" />
+
+        <EditText
+            android:id="@+id/etCheckOutMins"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Check-out expiry (minutes)"
+            android:inputType="number"
+            android:minHeight="48dp"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnGenerateCheckOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Generate Check-out QR" />
+
+        <TextView
+            android:id="@+id/tvCheckOutWindow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valid: --"
+            android:paddingBottom="4dp" />
+
+        <ImageView
+            android:id="@+id/imageQRCheckOut"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="4dp"
+            android:contentDescription="Check-out QR code" />
 
         <Button
             android:id="@+id/btnBack"
