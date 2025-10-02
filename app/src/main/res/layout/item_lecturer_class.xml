@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white"
+    android:layout_marginBottom="8dp">
+
+    <TextView
+        android:id="@+id/tvUnitTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Unit Name (CODE)"
+        android:textStyle="bold"
+        android:textSize="16sp"/>
+
+    <TextView
+        android:id="@+id/tvUnitTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="8:00 AM - 10:00 AM"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="2dp"/>
+
+    <TextView
+        android:id="@+id/tvReschedule"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rescheduled to Tue 10:00AM - 12:00PM"
+        android:textColor="#E74C3C"
+        android:visibility="gone"
+        android:layout_marginTop="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnStartSession"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Start Session"/>
+
+        <Space
+            android:layout_width="8dp"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/btnRequestMakeup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Request Make-up"/>
+    </LinearLayout>
+</LinearLayout>

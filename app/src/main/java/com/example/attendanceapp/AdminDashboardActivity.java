@@ -96,6 +96,13 @@ public class AdminDashboardActivity extends AppCompatActivity implements Navigat
             });
         }
 
+        View rowApproveMakeups = findViewById(R.id.rowApproveMakeups);
+        if (rowApproveMakeups != null) {
+            rowApproveMakeups.setOnClickListener(v -> {
+                startActivity(new Intent(this, AdminMakeupRequestsActivity.class));
+            });
+        }
+
     }
 
     @Override

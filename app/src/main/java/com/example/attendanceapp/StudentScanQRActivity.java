@@ -146,23 +146,20 @@ public class StudentScanQRActivity extends AppCompatActivity {
 
                 attRef.set(updates, com.google.firebase.firestore.SetOptions.merge())
                         .addOnSuccessListener(aVoid -> {
-                            // After any update, recompute status if possible and update session percentage
+                            // After any update, set status using two-state logic (Present/Absent only)
                             attRef.get().addOnSuccessListener(cur -> {
                                 Long inMs = cur.getLong("checkin_millis");
                                 Long outMs = cur.getLong("checkout_millis");
+
                                 String status;
-                                if (inMs == null && outMs == null) {
-                                    status = "Invalid";
-                                } else if (inMs != null && outMs == null) {
-                                    status = "Absent"; // checked in only
-                                } else if (inMs == null) {
-                                    status = "Invalid"; // checkout without checkin
-                                } else {
-                                    long sessionDuration = (endMillis != null && startMillis != null) ? (endMillis - startMillis) : 0L;
-                                    long attended = outMs - inMs;
-                                    float ratio = (sessionDuration > 0) ? (attended / (float) sessionDuration) : 0f;
-                                    status = ratio >= 0.75f ? "Present" : "Partial";
+                                if ("IN".equals(type)) {
+                                    // Valid check-in within window => Present immediately
+                                    status = "Present";
+                                } else { // OUT
+                                    // If student previously checked in for this session, keep Present; else Absent
+                                    status = (inMs != null) ? "Present" : "Absent";
                                 }
+
                                 Map<String, Object> st = new HashMap<>();
                                 st.put("status", status);
                                 attRef.update(st);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -8,20 +7,18 @@
     android:background="#F6F8FA">
 
     <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/tvUnitHeader"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="My Attendance"
+        android:text="Session List"
         android:textStyle="bold"
         android:textSize="18sp"
         android:textColor="@android:color/black"
         android:layout_marginBottom="12dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvUnitsAttendance"
+        android:id="@+id/rvSessions"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        tools:listitem="@layout/item_student_unit_attendance"/>
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

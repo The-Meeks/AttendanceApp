@@ -1,101 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#F6F8FA">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue_header"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvStudentHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/student_dashboard"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
+        <!-- Toolbar Header (match lecturer) -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/blue_header"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:title="Student Dashboard" />
 
-        <TextView
-            android:id="@+id/tvWelcomeStudent"
-            android:layout_width="wrap_content"
+        <!-- Welcome subheader under toolbar -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_student"
-            android:textSize="20sp"
-            android:textColor="#FFFFFF"
-            android:layout_marginTop="8dp" />
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvWelcomeStudent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Welcome back,"
+                android:textSize="14sp"
+                android:textColor="@android:color/black" />
+
+            <TextView
+                android:id="@+id/tvStudentName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Student Name"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:textColor="@android:color/black" />
+        </LinearLayout>
+
+        <!-- Body content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upcoming Classes"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@android:color/black"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvUpcomingClasses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- Scan QR Button -->
+            <TextView
+                android:id="@+id/btnScanQR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Scan QR Code"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:background="@drawable/bg_primary_button"
+                android:padding="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
+
+            <!-- Quick actions -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2"
+                android:layout_marginBottom="16dp">
+
+                <LinearLayout
+                    android:id="@+id/cardMyUnits"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:padding="16dp"
+                    android:elevation="2dp"
+                    android:layout_marginEnd="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Units"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/cardAttendanceReport"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/white"
+                    android:padding="16dp"
+                    android:elevation="2dp"
+                    android:layout_marginStart="8dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Attendance Report"
+                        android:textColor="@android:color/black"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Alert card -->
+            <LinearLayout
+                android:id="@+id/alertCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF2F2"
+                android:padding="12dp"
+                android:visibility="gone"
+                android:orientation="vertical"
+                android:elevation="2dp">
+
+                <TextView
+                    android:id="@+id/tvAlertText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@android:color/black"/>
+            </LinearLayout>
+
+            <!-- Logout button -->
+            <TextView
+                android:id="@+id/btnLogoutStudent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:background="@android:color/holo_red_dark"
+                android:padding="14dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:layout_marginTop="34dp">
-
-        <TextView
-            android:id="@+id/btnScanQR"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_qr_code"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/scan_qr"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/btnViewUnits"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_units"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/view_units"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/btnViewAttendance"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_attendance"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/view_attendance"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@drawable/bg_button"
-            android:layout_marginBottom="12dp" />
-
-        <TextView
-            android:id="@+id/btnLogoutStudent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_logout"
-            android:drawablePadding="12dp"
-            android:gravity="center_vertical"
-            android:padding="16dp"
-            android:text="@string/logout"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@android:color/white"
-            android:background="@android:color/holo_red_dark" />
-
-    </LinearLayout>
-</LinearLayout>
+</ScrollView>

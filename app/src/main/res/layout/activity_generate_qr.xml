@@ -105,6 +105,13 @@
             android:contentDescription="Check-out QR code" />
 
         <Button
+            android:id="@+id/btnCloseSession"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Close Session (mark remaining as Absent)"
+            android:layout_marginTop="12dp" />
+
+        <Button
             android:id="@+id/btnBack"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

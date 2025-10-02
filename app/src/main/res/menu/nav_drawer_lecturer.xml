@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_today_classes"
+            android:title="Today's Classes" />
+        <item
+            android:id="@+id/nav_my_units"
+            android:title="My Units" />
+        <item
+            android:id="@+id/nav_attendance_overview"
+            android:title="Attendance Overview" />
+        <item
+            android:id="@+id/nav_reports"
+            android:title="Reports" />
+    </group>
+    <item
+        android:id="@+id/nav_logout"
+        android:title="Logout" />
+</menu>

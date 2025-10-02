@@ -13,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
@@ -26,6 +30,10 @@ public class ViewUnitsActivity extends AppCompatActivity {
     private FirebaseFirestore db;
     private ArrayList<String> unitsList;
     private ArrayAdapter<String> adapter;
+    private ListenerRegistration unitsListener;
+    private ListenerRegistration catalogListener;
+    private final java.util.Set<String> activeUnitCodes = new java.util.HashSet<>();
+    private com.google.firebase.firestore.QuerySnapshot lastUnitsSnap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,50 +54,99 @@ public class ViewUnitsActivity extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, unitsList);
         listViewUnits.setAdapter(adapter);
 
-        // Get current lecturer UID
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser != null) {
-            String lecturerUid = currentUser.getUid();
-
-            // Debugging: Show UID
-            Toast.makeText(this, "Logged in UID: " + lecturerUid, Toast.LENGTH_LONG).show();
-
-            loadLecturerUnits(lecturerUid);
-        } else {
-            Toast.makeText(this, "No lecturer logged in", Toast.LENGTH_SHORT).show();
-        }
+        // Start listening in onStart to respect lifecycle
 
         // Back button
         btnBack.setOnClickListener(v -> finish());
     }
 
-    private void loadLecturerUnits(String lecturerUid) {
-        db.collection("lecturerUnits")
+    private void startUnitsListener(String lecturerUid) {
+        stopUnitsListener();
+
+        // Listen to catalog of actual units to know which codes still exist
+        catalogListener = db.collection("units").addSnapshotListener((catalog, ce) -> {
+            activeUnitCodes.clear();
+            if (catalog != null) {
+                for (QueryDocumentSnapshot d : catalog) {
+                    String c = d.getString("unit_code");
+                    if (c != null) activeUnitCodes.add(c);
+                }
+            }
+            // Rebuild immediately using last snapshot
+            rebuildFromSnapshots();
+        });
+
+        unitsListener = db.collection("lecturerUnits")
                 .whereEqualTo("lecturer_id", lecturerUid)
-                .get()
-                .addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                        unitsList.clear();
-
-                        for (QueryDocumentSnapshot document : task.getResult()) {
-                            String unitName = document.getString("unit_name");
-                            String unitCode = document.getString("unit_code");
-                            String semester = document.getString("semester");
-                            Long year = document.getLong("year_of_study");
-
-                            String unitDetails = unitCode + " - " + unitName +
-                                    "\nYear: " + year + ", " + semester;
-                            unitsList.add(unitDetails);
-                        }
-
-                        if (unitsList.isEmpty()) {
-                            unitsList.add("No units found for this lecturer.");
-                        }
-
-                        adapter.notifyDataSetChanged();
-                    } else {
+                .addSnapshotListener((snap, e) -> {
+                    if (e != null) {
                         Toast.makeText(this, "Error loading units", Toast.LENGTH_SHORT).show();
+                        return;
                     }
+                    lastUnitsSnap = snap;
+                    rebuildFromSnapshots();
                 });
+    }
+
+    private void rebuildFromSnapshots() {
+        unitsList.clear();
+        if (lastUnitsSnap != null) {
+            java.util.Map<String, String> unique = new java.util.LinkedHashMap<>();
+            for (QueryDocumentSnapshot document : lastUnitsSnap) {
+                String unitCode = document.getString("unit_code");
+                String unitName = document.getString("unit_name");
+                String semester = document.getString("semester");
+                Long year = document.getLong("year_of_study");
+
+                if (unitCode == null && unitName == null) continue;
+                if (unitCode != null && !activeUnitCodes.isEmpty() && !activeUnitCodes.contains(unitCode)) {
+                    continue; // filtered out by catalog removal
+                }
+
+                String safeCode = unitCode != null ? unitCode : "";
+                String safeName = unitName != null ? unitName : "";
+                String safeSem = semester != null ? semester : "";
+                String safeYear = year != null ? String.valueOf(year) : "";
+
+                String unitDetails = safeCode + " - " + safeName +
+                        "\nYear: " + safeYear + ", " + safeSem;
+                if (unitCode != null && !unique.containsKey(unitCode)) {
+                    unique.put(unitCode, unitDetails);
+                }
+            }
+            unitsList.addAll(unique.values());
+        }
+        if (unitsList.isEmpty()) {
+            unitsList.add("No units found for this lecturer.");
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+    private void stopUnitsListener() {
+        if (unitsListener != null) {
+            unitsListener.remove();
+            unitsListener = null;
+        }
+        if (catalogListener != null) {
+            catalogListener.remove();
+            catalogListener = null;
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            startUnitsListener(currentUser.getUid());
+        } else {
+            Toast.makeText(this, "No lecturer logged in", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopUnitsListener();
     }
 }

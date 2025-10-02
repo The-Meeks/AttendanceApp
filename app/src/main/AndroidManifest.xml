@@ -45,15 +45,17 @@
         <activity android:name=".AllocateUnitsActivity" android:exported="true"/>
         <activity android:name=".EnrollCourseActivity" android:exported="true"/>
         <activity android:name=".PromoteCourseActivity" android:exported="true"/>
-        <activity android:name=".LecturerDashboardActivity" android:exported="true"/>
+        <activity android:name=".LecturerDashboardActivity" android:exported="true" android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
         <activity android:name=".ViewUnitsActivity" android:exported="true"/>
         <activity android:name=".LecturerGenerateQRActivity" android:exported="true"/>
-        <activity android:name=".StudentDashboardActivity" android:exported="true"/>
+        <activity android:name=".StudentDashboardActivity" android:exported="true" android:theme="@style/Theme.Material3.DayNight.NoActionBar"/>
         <activity android:name=".StudentUnitsActivity" android:exported="true"/>
         <activity android:name=".StudentScanQRActivity" android:exported="true"/>
         <activity android:name=".StudentViewAttendanceActivity" android:exported="true"/>
+        <activity android:name=".StudentUnitSessionsActivity" android:exported="true"/>
         <activity android:name=".LecturerViewAttendanceActivity" android:exported="true"/>
         <activity android:name=".SessionAttendanceActivity" android:exported="true"/>
+        <activity android:name=".AdminMakeupRequestsActivity" android:exported="false" />
 
 
     </application>

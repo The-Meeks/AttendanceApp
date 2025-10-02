@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Global blue button style -->
+    <style name="BlueButton" parent="Widget.AppCompat.Button">
+        <item name="android:backgroundTint">@color/md_theme_light_primary</item>
+        <item name="android:textColor">@color/md_theme_light_onPrimary</item>
+    </style>
+
 
     <style name="AdminCard">
         <item name="android:layout_width">0dp</item>

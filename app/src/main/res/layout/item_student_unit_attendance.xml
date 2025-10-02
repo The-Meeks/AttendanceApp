@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="12dp"
+    android:background="@android:color/white"
+    android:elevation="2dp"
+    android:layout_marginBottom="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_info_details"
+            app:tint="@color/blue_header" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingStart="12dp">
+
+            <TextView
+                android:id="@+id/tvUnitTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Introduction to Programming"
+                android:textStyle="bold"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tvUnitSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CS101"
+                android:textColor="@android:color/darker_gray" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvProgressCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10/12"
+            android:textStyle="bold"
+            android:textColor="@android:color/black" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Attendance Progress"
+        android:textColor="@android:color/black"
+        android:layout_marginTop="8dp" />
+
+    <ProgressBar
+        android:id="@+id/progressAttendance"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:progressTint="@color/blue_header"
+        android:max="12"
+        android:progress="0"
+        android:layout_marginTop="6dp" />
+
+</LinearLayout>

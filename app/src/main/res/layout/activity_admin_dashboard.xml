@@ -150,6 +150,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/rowApproveMakeups"
                         android:orientation="horizontal"
                         android:padding="12dp"
                         android:layout_width="match_parent"
@@ -158,7 +159,7 @@
                         android:elevation="2dp"
                         android:layout_marginBottom="8dp">
                         <TextView
-                            android:text="View Missed Sessions"
+                            android:text="Approve Make-ups"
                             android:textSize="15sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -174,7 +175,7 @@
                         android:elevation="2dp"
                         android:layout_marginBottom="8dp">
                         <TextView
-                            android:text="Approve Make-ups"
+                            android:text="View Missed Sessions"
                             android:textSize="15sp"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -234,7 +235,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                     <TextView
-                        android:text="Recent classes show increased absences. Review attendance reports."
+                        android:text="Review attendance reports."
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
                 </LinearLayout>
