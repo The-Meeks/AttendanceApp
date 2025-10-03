@@ -123,7 +123,7 @@ public class LecturerDashboardActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LecturerGenerateQRActivity.class)));
 
         btnViewAttendance.setOnClickListener(v ->
-                startActivity(new Intent(this, LecturerViewAttendanceActivity.class)));
+                startActivity(new Intent(this, LecturerUnitsActivity.class)));
 
         btnViewUnits.setOnClickListener(v ->
                 startActivity(new Intent(this, ViewUnitsActivity.class)));
@@ -146,9 +146,9 @@ public class LecturerDashboardActivity extends AppCompatActivity {
                 } else if (id == R.id.nav_my_units) {
                     startActivity(new Intent(this, ViewUnitsActivity.class));
                 } else if (id == R.id.nav_attendance_overview) {
-                    startActivity(new Intent(this, LecturerViewAttendanceActivity.class));
+                    startActivity(new Intent(this, LecturerUnitsActivity.class));
                 } else if (id == R.id.nav_reports) {
-                    startActivity(new Intent(this, LecturerViewAttendanceActivity.class));
+                    startActivity(new Intent(this, LecturerUnitsActivity.class));
                 } else if (id == R.id.nav_logout) {
                     FirebaseAuth.getInstance().signOut();
                     Intent intent = new Intent(this, LecturerLoginActivity.class);

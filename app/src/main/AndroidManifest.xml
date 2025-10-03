@@ -55,6 +55,9 @@
         <activity android:name=".StudentUnitSessionsActivity" android:exported="true"/>
         <activity android:name=".LecturerViewAttendanceActivity" android:exported="true"/>
         <activity android:name=".SessionAttendanceActivity" android:exported="true"/>
+        <activity android:name=".LecturerUnitsActivity" android:exported="true"/>
+        <activity android:name=".LecturerUnitSessionsActivity" android:exported="true"/>
+        <activity android:name=".LecturerSessionDetailActivity" android:exported="true"/>
         <activity android:name=".AdminMakeupRequestsActivity" android:exported="false" />
 
 
